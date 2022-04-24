@@ -14,16 +14,7 @@ const restLink = new RestLink({
         response
           .json()
           .then(
-            ({
-              Search,
-              totalResults,
-            }: {
-              Search: string[];
-              totalResults: string;
-            }) => {
-              console.log('totalResults', totalResults);
-              return Search;
-            }
+            ({ Search }: { Search: string[]; totalResults: string }) => Search
           ),
     },
     fav: {
