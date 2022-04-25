@@ -1,20 +1,5 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { List } from '@chakra-ui/react';
-
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-
-const colors = {
-  brand: {
-    700: '#2a69ac',
-  },
-};
-
-const theme = extendTheme({ colors });
-
-export const ThemeWrapper = ({ children }: any) => (
-  <ChakraProvider theme={theme}>{children}</ChakraProvider>
-);
 
 import Movie from './Movie';
 const MovieMock = {
@@ -26,18 +11,17 @@ const MovieMock = {
 };
 
 describe('Rendered Movie component', () => {
-  test('should show title, year and poster', () => {
-    // const { getByText } = renderComponent(<Movie movie={MovieMock} />);
-
-    const { getByText } = render(
+  test('should show title, year', () => {
+    const { getByText, getByAltText } = render(
       <List>
         <Movie movie={MovieMock} />
-      </List>,
-      {
-        wrapper: ThemeWrapper,
-      }
+      </List>
     );
 
     expect(getByText(MovieMock.Title)).toBeInTheDocument();
+    expect(getByText(`(${MovieMock.Year})`)).toBeInTheDocument();
+    // const posterImage = getByAltText(MovieMock.Title);
+    // expect(posterImage).toBeInTheDocument();
+    // expect(posterImage.src).toContain('MovieMock.Poster');
   });
 });

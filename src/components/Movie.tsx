@@ -15,6 +15,7 @@ export default function Movie({ movie }: { movie: MovieType }) {
         <Box px={6}>
           <Image
             src={movie.Poster}
+            fallbackSrc="https://via.placeholder.com/80"
             minWidth={'80px'}
             boxSize="80px"
             objectFit="cover"
